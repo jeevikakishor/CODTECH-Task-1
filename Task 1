@@ -1,0 +1,107 @@
+/*Temperature Convertor*/
+
+
+#include <stdio.h>
+
+float celsius_to_fahrenheit(float celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+float fahrenheit_to_celsius(float fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+
+float celsius_to_kelvin(float celsius) {
+    return celsius + 273.15;
+}
+
+float kelvin_to_celsius(float kelvin) {
+    return kelvin - 273.15;
+}
+
+float fahrenheit_to_kelvin(float fahrenheit) {
+    return (fahrenheit + 459.67) * 5 / 9;
+}
+
+float kelvin_to_fahrenheit(float kelvin) {
+    return (kelvin * 9 / 5) - 459.67;
+}
+
+int main() {
+    float temperature;
+    int choice_from, choice_to;
+
+    printf("Enter temperature: ");
+    scanf("%f", &temperature);
+
+    printf("Choose input scale:\n");
+    printf("1. Celsius\n");
+    printf("2. Fahrenheit\n");
+    printf("3. Kelvin\n");
+    scanf("%d", &choice_from);
+
+    printf("Choose output scale:\n");
+    printf("1. Celsius\n");
+    printf("2. Fahrenheit\n");
+    printf("3. Kelvin\n");
+    scanf("%d", &choice_to);
+
+    float converted_temperature;
+    switch (choice_from) {
+        case 1: // Celsius
+            switch (choice_to) {
+                case 1: // Celsius to Celsius
+                    converted_temperature = temperature;
+                    break;
+                case 2: // Celsius to Fahrenheit
+                    converted_temperature = celsius_to_fahrenheit(temperature);
+                    break;
+                case 3: // Celsius to Kelvin
+                    converted_temperature = celsius_to_kelvin(temperature);
+                    break;
+                default:
+                    printf("Invalid choice\n");
+                    return 1;
+            }
+            break;
+        case 2: // Fahrenheit
+            switch (choice_to) {
+                case 1: // Fahrenheit to Celsius
+                    converted_temperature = fahrenheit_to_celsius(temperature);
+                    break;
+                case 2: // Fahrenheit to Fahrenheit
+                    converted_temperature = temperature;
+                    break;
+                case 3: // Fahrenheit to Kelvin
+                    converted_temperature = fahrenheit_to_kelvin(temperature);
+                    break;
+                default:
+                    printf("Invalid choice\n");
+                    return 1;
+            }
+            break;
+        case 3: // Kelvin
+            switch (choice_to) {
+                case 1: // Kelvin to Celsius
+                    converted_temperature = kelvin_to_celsius(temperature);
+                    break;
+                case 2: // Kelvin to Fahrenheit
+                    converted_temperature = kelvin_to_fahrenheit(temperature);
+                    break;
+                case 3: // Kelvin to Kelvin
+                    converted_temperature = temperature;
+                    break;
+                default:
+                    printf("Invalid choice\n");
+                    return 1;
+            }
+            break;
+        default:
+            printf("Invalid choice\n");
+            return 1;
+    }
+
+    printf("Converted temperature: %.2f\n", converted_temperature);
+
+    return 0;
+}
